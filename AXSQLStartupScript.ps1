@@ -207,16 +207,16 @@ Function Restart-AXInstancesOnServer {
                     if ( $Force -or $PSCmdlet.ShouldProcess($AOS.Name,"Stop service")  ) {
                         $msg = "Stopping {0}" -f $AOS.Name
                         Write-Verbose $msg
-                        #$AOS.StopService()
+                        $AOS.StopService()
                     }
                 }
                 #endregion Stop AOS Instances
                 
                 #region Restart SQL
-                if ( $Force -or $PSCmdlet.ShouldProcess($SQLService.Name,"Stop service")  ) {
+                if ( $Force -or $PSCmdlet.ShouldProcess($SQLService.Name,"Restart service")  ) {
                     $msg = "Stopping {0}" -f $ServiceName
                     Write-Verbose $msg
-                    #Restart-Service -InputObject $SQLService
+                    Restart-Service -InputObject $SQLService
                 }
                 #endregion Restart SQL
                 
@@ -226,7 +226,7 @@ Function Restart-AXInstancesOnServer {
                     if ( $Force -or $PSCmdlet.ShouldProcess($AOS.Name,"Start service")  ) {
                         $msg = "Starting {0}" -f $AOS.Name
                         Write-Verbose $msg
-                        #$AOS.StartService()
+                        $AOS.StartService()
                     }
                 }
                 #endregion Start AOS Instances
