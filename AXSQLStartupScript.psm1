@@ -97,7 +97,9 @@ Function Get-AXConnectedAOS {
     )
     
     BEGIN {
-        $TSQL = "SELECT AOSID, INSTANCE_NAME FROM [SYSSERVERSESSIONS] WHERE STATUS = 1"
+        # Alive = 1
+        # Drain = 2
+        $TSQL = "SELECT AOSID, INSTANCE_NAME FROM [SYSSERVERSESSIONS] WHERE STATUS IN (1,2)"
     }
     
     PROCESS {
